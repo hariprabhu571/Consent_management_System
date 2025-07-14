@@ -282,9 +282,6 @@ We welcome contributions! Please follow these steps:
 - Ensure backward compatibility
 - Add proper error handling
 
-## 📄 License
-
-This project is licensed under the LGPL-3 License - see the [LICENSE](LICENSE) file for details.
 
 ## 🆘 Support
 
@@ -342,7 +339,3 @@ Common issues and solutions:
 - **Users**: For valuable feedback and suggestions
 
 ---
-
-**Made with ❤️ by the Consent Management System Team**
-
-For more information, visit our [documentation](docs/) or [website](https://example.com). 
