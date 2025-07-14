@@ -1,0 +1,125 @@
+<odoo>
+    <!-- Tree View -->
+    <record id="view_consent_form_custom_tree" model="ir.ui.view">
+        <field name="name">consent.form.custom.tree</field>
+        <field name="model">consent.form.custom</field>
+        <field name="arch" type="xml">
+            <tree multi_edit="1">
+                <field name="ref" string="Reference"/>
+                <field name="name" string="Subject"/>
+                <field name="partner_id"/>
+                <field name="users_id"/>
+                <field name="company_id"/>
+                <field name="date"/>
+                <field name="status" string="Status"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View -->
+    <record id="view_consent_form_custom_form" model="ir.ui.view">
+        <field name="name">consent.form.custom.form</field>
+        <field name="model">consent.form.custom</field>
+        <field name="arch" type="xml">
+            <form string="Consent Form">
+                <header>
+                    <button name="action_to_sign" string="TO SIGN" type="object"
+                            class="oe_highlight button-color"
+                            invisible="status != 'draft'"/>
+                    <button name="action_signed" string="SIGNED" type="object"
+                            class="oe_highlight button-color"
+                            invisible="status != 'to_sign'"/>
+
+                    <field name="status" widget="statusbar" nolabel="1" options="{'clickable' : True}"
+                           class="oe_highlight"/>
+                </header>
+
+                <sheet>
+                    <div class="oe_button_box" name="button_box" position="inside">
+                        <button name="action_customer_preview" type="object" string="Customer Preview"
+                                class="oe_stat_button oe_highlight" icon="fa-globe"/>
+                    </div>
+                    <!-- Auto-generated ID (Reference) -->
+                    <div class="oe_title" style="margin-left: 10px;">
+                        <h1>
+                            <field name="ref" readonly="1" placeholder="Auto-generated ID"/>
+                        </h1>
+                    </div>
+
+                    <!-- Horizontal Line -->
+                    <!--                    <div class="oe_horizontal_line" style="margin: 3px 0px 3px 0px; border-top: 1px solid #e0e0e0;"> </div>-->
+
+                    <group>
+                        <group>
+                            <field name="name" required="1"/>
+                            <field name="partner_id" required="1" style="color: #2fa09d; font-weight: bold;"/>
+                            <field name="users_id" required="1" style="color: #2fa09d; font-weight: bold;"/>
+                            <field name="tag_ids" widget='many2many_tags' options="{'no_create': True}"/>
+                            <field name="company_id" style="color: #2fa09d; font-weight: bold;"/>
+                        </group>
+                        <group>
+                            <field name="date"/>
+                            <field name="template_id" required="1" style="color: #2fa09d; font-weight: bold;"/>
+                            <field name="consent_given" string="Print Header"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Document">
+                            <group>
+                                <field name="consent_content" readonly="1" string=""/>
+                            </group>
+                        </page>
+                        <page string="Additional Information">
+                            <group>
+                                <field name="additional_info"/>
+                                <field name="signature"/>
+                                <field name="signed_by"/>
+                                <field name="signed_on"/>
+                            </group>
+                        </page>
+
+
+                    </notebook>
+                </sheet>
+
+                <!-- chatter view -->
+                <div class="oe_chatter">
+                    <!--                    <field name="message_follower_ids" group="base.group_user"/>-->
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_consent_form_custom_search" model="ir.ui.view">
+        <field name="name">consent.form.custom.search</field>
+        <field name="model">consent.form.custom</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="ref"/>
+                <field name="status"/>
+                <filter name="filter_draft" string="Draft" domain="[('status', '=', 'draft')]"/>
+                <filter name="filter_to_sign" string="To Sign" domain="[('status', '=', 'to_sign')]"/>
+                <filter name="filter_signed" string="Signed" domain="[('status', '=', 'signed')]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Action Window -->
+    <record id="action_consent_form" model="ir.actions.act_window">
+        <field name="name">Consent Form</field>
+        <field name="res_model">consent.form.custom</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first consent!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item -->
+    <menuitem id="menu_consent" name="Consent" parent="menu_consent_root" action="action_consent_form" sequence="0"/>
+</odoo>

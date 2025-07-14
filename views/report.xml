@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="report_project_style_shoot_action" model="ir.actions.report">
+            <field name="name">Consent Form</field>
+            <field name="model">consent.form.custom</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">consent_management.report_styleshoot</field>
+            <field name="report_file">consent_management.report_styleshoot</field>
+            <field name="print_report_name">('Style Shoot - %s' % (object.name))
+            </field>
+            <field name="binding_model_id" ref="consent_management.model_consent_form_custom"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

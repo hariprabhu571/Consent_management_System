@@ -1,0 +1,20 @@
+.o_form_sheet_centered {
+    max-width: 80%;
+    margin: 0 auto;  /* Centers the form on the page */
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.o_form_sheet_centered .oe_inline {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* custom_button_style.css */
+.button-color {
+    background-color: #2fa09d !important;
+    color: white !important;
+}
+
+

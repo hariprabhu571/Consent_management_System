@@ -1,0 +1,53 @@
+<odoo>
+    <!-- Tree View for Consent Form Template -->
+    <record id="view_consent_form_template_tree" model="ir.ui.view">
+        <field name="name">consent.form.template.tree</field>
+        <field name="model">consent.form.template</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Consent Form Template -->
+    <record id="view_consent_form_template_form" model="ir.ui.view">
+        <field name="name">consent.form.template.form</field>
+        <field name="model">consent.form.template</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <div class="o_form_sheet_centered">
+                        <group>
+                            <field name="name" class="oe_inline"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                        <group>
+                            <field name="template_content"/>
+                        </group>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Window for Consent Form Template -->
+    <record id="action_consent_form_template" model="ir.actions.act_window">
+        <field name="name">Consent Form Template</field>
+        <field name="res_model">consent.form.template</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first consent!
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item for Consent Form Template -->
+    <menuitem id="menu_consent_template"
+              name="Consent Form Template"
+              parent="menu_consent_root"
+              action="action_consent_form_template"
+              sequence="10"/>
+</odoo>

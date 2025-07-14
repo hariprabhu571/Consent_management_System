@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_consent_form_custom_user,access.consent.form.custom.user,model_consent_form_custom,base.group_user,1,1,1,1
+access_consent_form_template,access.consent.form.template,model_consent_form_template,,1,1,1,1

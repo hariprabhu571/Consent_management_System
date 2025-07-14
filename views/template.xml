@@ -1,0 +1,60 @@
+<odoo>
+    <template id="report_styleshoot">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="consent_form">
+                <div class="container" style="padding: 0; background-color: #f5f5f5;">
+                    <div class="row justify-content-center">
+                        <!--  Right Side: Consent Form Content  -->
+                        <div class="col-md-9 d-flex justify-content-center">
+                            <div class="a4-document"
+                                 style="padding: 0; background-color: white; border-radius: 5px; width: 100%; height: auto; overflow: auto;">
+                                <!--  Header Section  -->
+                                <div class="header-section text-right">
+                                    <div class="company-info">
+                                        <img t-if="consent_form.consent_given and consent_form.company_id.logo"
+                                             t-att-src="'data:image/png;base64,' + consent_form.company_id.logo.decode('ascii')"
+                                             alt="Company Logo" class="company-logo" style="max-height: 100px;"/>
+                                        <!--  Horizontal Line  -->
+                                        <hr t-if="consent_form.company_id.logo"
+                                            style="border: 0; border-top: 2px solid #000; margin-bottom: 10px;"/>
+                                        <div class="company-details" style="line-height: 1.5;">
+                                            <p t-esc="consent_form.company_id.name"/>
+                                            <p t-esc="consent_form.company_id.street"/>
+                                            <p t-esc="consent_form.company_id.street2"/>
+                                            <p>
+                                                <t t-esc="consent_form.company_id.city"/>
+                                                -
+                                                <t t-esc="consent_form.company_id.zip"/>
+                                            </p>
+                                            <p t-esc="consent_form.company_id.state_id.name"/>
+                                            <p t-esc="consent_form.company_id.country_id.name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--  Content Section  -->
+                                <div class="oe_structure"/>
+                                <div class="consent-form-content">
+                                    <!--  Display the consent content  -->
+                                    <t t-raw="consent_form.consent_content"/>
+                                </div>
+                                <!--  Customer Signature Section  -->
+                                <div class="customer-signature-section" style="margin-top: 50px; font-size: 15px;">
+                                    <p>
+                                        <strong>Customer Signature</strong>
+                                    </p>
+                                    <p class="mt-1" style="font-size: 15px;">
+                                        <t t-esc="consent_form.partner_id.name"/>
+                                    </p>
+                                    <p t-if="consent_form.date" class="mt-1">
+                                        <t t-esc="consent_form.date.strftime('%d/%m/%Y')"/>
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>
